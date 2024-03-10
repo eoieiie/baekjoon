@@ -1,8 +1,4 @@
 def finaltime(a, b, c):
-    addtime = c // 60
-
-    if a >= 24:
-        a = a - 24
 
     b = b + c
     if b >= 60:
