@@ -1,35 +1,14 @@
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        
 word = input().upper()
+word_list = list(set(word))
 
-cnta = 0
-for n in alphabet:
-    if n in word:
-        cnta += 1
+cnt = []
+for i in word_list:
+  count = word.count
+  cnt.append(count(i))
 
-lista = [0] * cnta
-listb = []
-cntb = 0 
-cntc = 0
+if cnt.count(max(cnt)) > 1:
+  print("?")
 
-for n in alphabet: #m이 들어감
-    if n in word:
-        listb.append(n)
-        for m in word:#알파벳 다 돌리는데
-            if n == m and n not in lista:
-                lista[cntb] += 1
-        cntb += 1
-
-maxvalue = 0
-for i in lista:
-    if i > maxvalue:
-        maxvalue = i
-
-for i in lista:
-    if i == maxvalue:
-        cntc += 1
-
-if cntc == 1:
-    print(listb[lista.index(maxvalue)])
 else:
-    print("?")
+  print(word_list[(cnt.index(max(cnt)))])
+
