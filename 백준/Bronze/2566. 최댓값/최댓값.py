@@ -1,13 +1,13 @@
-num_list = [list(map(int, input().split())) for _ in range(9)]
+table = [list(map(int, input().split())) for _ in range(9)]
 
-max_value = max(max(row) for row in num_list)
+max_num = 0
+max_row, max_col = 0, 0
+for row in range(9):
+    for col in range(9):
+        if max_num <= table[row][col]:
+            max_row = row + 1
+            max_col = col + 1
+            max_num = table[row][col]
 
-for i, row in enumerate(num_list):
-    if max(row) == max_value:  # if max_value in row:
-        max_index = (i * 9) + row.index(max(row))
-
-row_position = max_index // len(num_list) + 1
-column_position = max_index % len(num_list) + 1
-
-print(max_value)
-print(row_position, column_position)
+print(max_num)
+print(max_row, max_col)
