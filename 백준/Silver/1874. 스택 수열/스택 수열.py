@@ -2,49 +2,37 @@ import sys
 
 def main() -> None:
 
-    input = sys.stdin.readline
-    n = int(input())
+  input = sys.stdin.readline
+  n = int(input())
+  output = []
+  stack = []
+  temp = 1
+  isitok = True
+
+  for _ in range(n):
     
-    stack = [] #입력 담을 곳
-    check = [] #n담을 곳
-    out = [] # + - 담을 곳
-    ok = True #결과 판별용
-    temp = 1
+    num = int(input())
+    
+    while temp <= num:
+      stack.append(temp)
+      output.append("+")
+      temp += 1
 
-    for _ in range(n):
-        stack.append(int(input())) #정수면 상관없는데, 문자라면 rstrip 있어야 함
+    if stack and stack[-1] == num:
+      stack.pop()
+      output.append("-")
 
-    for i in stack:
-        while temp <= i:
-            
-            #for 문은 자동으로 늘어남. 
-            #그래서 while문으로 for문 대신 늘려줄 수 있음. 
-            #이게 포인트 
-            
-            check.append(temp)
-            out.append("+")
-            temp += 1
-        
-
-        if check[-1] == i:
-            check.pop()
-            out.append("-")
-
-        else:
-            ok = False
-            break
-        
-
-    if ok:
-        sys.stdout.write('\n'.join(out))
     else:
-        print("NO")
+      isitok = False
+      break
 
+  if isitok:
+    
+    sys.stdout.write("\n".join(output))
+  else:
+    sys.stdout.write("NO")
+    
 if __name__ == "__main__":
-    main()
-        
-            
+  main()
 
-        
-        
-
+  
