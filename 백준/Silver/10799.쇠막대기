@@ -1,0 +1,55 @@
+여는괄호는 temp에 무조건 넣고 
+
+"바로 다음" 에 닫는 괄호다? 그럼 스택에 있는 여는 괄호 하나 pop 하고, 남아있는 스택의 개수만큼 count += 해줌.
+
+근데 여닫 이후 바로 다시 닫는 괄호가 나올 시 마찬가지로 남아있는 스택의 개수만큼 카운트 늘려줌. 
+
+여는 괄로가 나온다면 스택에 넣는걸 반복..
+
+비어있으면 뭐 어쩔 수 없는거고, 따로 예외처리 해줄 필요는 없음.
+
+스택에서 빼고 카운트 올리는 거는 함수로 맹글어서 하면 조을 듯.
+
+
+변수 : temp, count, res
+
+
+import sys
+
+def main() -> None:
+
+	input = sys.stdin.readline
+	sticks = input().rstrip()
+
+	temp = []
+	count = 0
+	lazer = True
+
+	def increase():
+		nonlocal count
+		count += len(temp)
+
+#	nonlocal → “내 바깥 함수 지역 변수에 쓸래!” (함수 안 함수 구조일 때만)
+#	global → “파일 전역 변수에 쓸래!” (함수 깊이와 무관하게 언제든)
+
+	for stick in sticks:
+
+		if stick == "(":
+			temp.append(stick)
+			lazer = True
+			 
+	 	elif stick == ")" and lazer:
+			temp.pop()
+			increase()
+			lazer = False
+		
+		elif stick == ")" and not lazer:
+			count += 1
+			temp.pop()
+			
+	print(count)
+
+if __name__ == "__main__":
+	main()
+
+ 
