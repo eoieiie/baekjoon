@@ -21,13 +21,13 @@ def main() -> None:
 	input = sys.stdin.readline
 	sticks = input().rstrip()
 
-	temp = []
+	stack = []
 	count = 0
-	lazer = True
+	laser = False
 
 	def increase():
 		nonlocal count
-		count += len(temp)
+		count += len(stack)
 
 #	nonlocal → “내 바깥 함수 지역 변수에 쓸래!” (함수 안 함수 구조일 때만)
 #	global → “파일 전역 변수에 쓸래!” (함수 깊이와 무관하게 언제든)
@@ -35,17 +35,19 @@ def main() -> None:
 	for stick in sticks:
 
 		if stick == "(":
-			temp.append(stick)
-			lazer = True
+			stack.append(stick)
+			laser = True
 			 
-	 	elif stick == ")" and lazer:
-			temp.pop()
-			increase()
-			lazer = False
+	 	elif stick == ")" and laser:
+			stack.pop()
+		  if stack:
+				increase()
+				laser = False
+			else:
+				continue
 		
-		elif stick == ")" and not lazer:
+		elif stick == ")" and not laser:
 			count += 1
-			temp.pop()
 			
 	print(count)
 
