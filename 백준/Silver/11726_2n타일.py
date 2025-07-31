@@ -1,6 +1,6 @@
 import sys
 
-MOD = 10007  # 문제에서 요구한 나머지
+MOD = 10007  # 문제에서 요구한 나머지(나눌거)
 
 def main() -> None:
     read = sys.stdin.readline
